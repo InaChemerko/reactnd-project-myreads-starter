@@ -1,51 +1,38 @@
-import React, { Component } from 'react'
+import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import CurrentlyReading from './components/CurrentlyReading'
-import WantToRead from './components/WantToRead'
-import ToRead from './components/ToRead'
 import SearchPage from './components/SearchPage'
+import MainPage from './components/MainPage'
 
 class BooksApp extends React.Component {
   state = {
+     booksList: []
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
+    //showSearchPage: false
   }
+//retrieve info about books
+  componentDidMount(){
+    BooksAPI.getAll().then((booksList) => {
+      this.setState({ booksList })
+    })
+
+  }
+
+  
 
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <SearchPage/>
+        <SearchPage booksList={this.state.booksList} />
           
-        ) : (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              <div>
-                <CurrentlyReading/>
-                <WantToRead/>
-                <ToRead/>
-
-
-
-
-
-          </div>
-            </div>      
-                
-            <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-            </div>
-          </div>
-        )}
+        <MainPage   booksList={this.state.booksList} />
+          
+       
       </div>
     )
   }
