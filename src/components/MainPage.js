@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 class MainPage extends Component {
   render() {
-
+//console.log("tr", this.props.booksList)
 		return(
 
 			<div className="list-books">
@@ -15,18 +15,16 @@ class MainPage extends Component {
             <div className="list-books-content">
               <div>
                 
-                <Shelf title='Currently Reading' shelfValue='currentlyReading' booksList={this.props.booksList}/>
-                <Shelf title='Want to Read' shelfValue='wantToRead' booksList={this.props.booksList}/>
-                <Shelf title='Read' shelfValue='read' booksList={this.props.booksList}/>
+                <Shelf title='Currently Reading' shelfValue='currentlyReading' booksList={this.props.booksList} updateBooks={ this.props.updateBooks } />
+                <Shelf title='Want to Read' shelfValue='wantToRead' booksList={this.props.booksList} updateBooks={ this.props.updateBooks } />
+                <Shelf title='Read' shelfValue='read' booksList={this.props.booksList} updateBooks={ this.props.updateBooks } />
           </div>
             </div>      
                 
             <div className="open-search">
-              <Link to="/create" >Add a book</Link>
+              <Link to="/search" >Add a book</Link>
             </div>
             </div>
-
-
 			)
 	}
 }

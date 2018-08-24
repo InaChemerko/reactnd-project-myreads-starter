@@ -8,13 +8,7 @@ import MainPage from './components/MainPage'
 class BooksApp extends React.Component {
   state = {
      booksList: []
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    //showSearchPage: false
+    
   }
 //retrieve info about books
   componentDidMount(){
@@ -25,15 +19,36 @@ class BooksApp extends React.Component {
   }
 
   
+  updateBooks = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+    BooksAPI.getAll().then(booksList => this.setState({ booksList }))
+    
+    
+  }
+
+  
+/*createContact(contact){
+    ContactsAPI.create(contact).then(contact => {
+      this.setState(state => ({
+        contacts: state.contacts.concat([ contact ])
+      }))
+    })
+  updateBooks(book, shelf) {
+    BooksAPI.update(book, shelf).then((booksList) => {
+      this.setState({ booksList })
+    })*/
+
+
+  
 
   render() {
     return (
       <div className="app">
-      <Route path='/create' render={() => (
-        <SearchPage booksList={this.state.booksList} />
+      <Route path='/search' render={() => (
+        <SearchPage booksList={this.state.booksList} updateBooks={this.updateBooks}/>
         )}/>
        <Route exact path='/' render={() => (          
-        <MainPage   booksList={this.state.booksList} />
+        <MainPage   booksList={this.state.booksList} updateBooks={this.updateBooks}/>
        )}/>      
       </div>
     )

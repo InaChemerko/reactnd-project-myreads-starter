@@ -4,6 +4,8 @@ import Book from './Book'
 
 class Shelf extends Component {
   render() {
+    //console.log(this.props)
+    //console.log(this.props.updateBooks())
 		return(
 
 			<div className="bookshelf">
@@ -14,7 +16,7 @@ class Shelf extends Component {
                     {this.props.booksList.filter((book) => book.shelf === this.props.shelfValue)
                     .map((bookAfterFilter) => (
                     <li key={bookAfterFilter.id}>
-                    <Book book={bookAfterFilter}/>
+                    <Book book={bookAfterFilter} updateBooks={ this.props.updateBooks }/>
                     </li>
 
                     ))}

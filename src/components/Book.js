@@ -4,17 +4,14 @@ import React, { Component } from 'react';
 class Book extends Component {
 
   render() {
-//console.log("fgt", this.props.book)
-		return(
-
-			
-                    
-                      
+console.log("fgt", this.props.book)
+		return(                      
                         <div className="book">
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}></div>
                             <div className="book-shelf-changer">
-                              <select>
+                              <select onChange={(event) => this.props.updateBooks(this.props.book, event.target.value)}
+                                value={this.props.book.shelf || "none"}>
                                 <option value="move" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
                                 <option value="wantToRead">Want to Read</option>
@@ -25,9 +22,7 @@ class Book extends Component {
                           </div>
                           <div className="book-title">{this.props.book.title}</div>
                           <div className="book-authors">{this.props.book.authors}</div>
-                        </div>
-                     
-                      
+                        </div>                     
                  
 			)
 	}
