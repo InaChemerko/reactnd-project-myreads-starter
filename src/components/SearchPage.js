@@ -1,21 +1,45 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book'
+import * as BooksAPI from '../BooksAPI'
 
 class SearchPage extends Component {
 
   state={
-    query:''
+    query:'',
+    booksSearch: []
+    
   }
 
   updateQuery = (query) => {
-    this.setState({ query: query.trim() })
+    this.setState({ query })
+   if (query) {
+            BooksAPI.search(query).then((booksSearch) => {
+                if (booksSearch.error) { 
+                    this.setState({ booksSearch: [] })
+                } else {
+                    this.setState({ booksSearch: booksSearch })
+                }
+            })
+        } else { this.setState({ booksSearch: [] })
+        }
   }
-
-
-
+    
 	render(){
-    console.log("tr",this.props.booksList)
+    //console.log("tr",this.props.booksList)
+
+    this.state.booksSearch.map((booksSearch) => {
+            booksSearch.shelf = "none";
+            return (
+                this.props.booksList.map((book) => {
+
+                  if (booksSearch.id === book.id) {
+                    booksSearch.shelf = book.shelf
+                  }
+                    
+                    return booksSearch.shelf;
+                }
+            ))})
 
 		return(
 
@@ -31,7 +55,13 @@ class SearchPage extends Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-             
+             { this.state.booksSearch.map((booksSearch) => 
+              (<li key={ booksSearch.id }>
+                             <Book 
+                                 book={ booksSearch }
+                                 updateBooks={ this.props.updateBooks }
+                             /> 
+                         </li>))}
               </ol>
             </div>
           </div>

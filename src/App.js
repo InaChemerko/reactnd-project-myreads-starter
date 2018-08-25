@@ -26,21 +26,6 @@ class BooksApp extends React.Component {
     
   }
 
-  
-/*createContact(contact){
-    ContactsAPI.create(contact).then(contact => {
-      this.setState(state => ({
-        contacts: state.contacts.concat([ contact ])
-      }))
-    })
-  updateBooks(book, shelf) {
-    BooksAPI.update(book, shelf).then((booksList) => {
-      this.setState({ booksList })
-    })*/
-
-
-  
-
   render() {
     return (
       <div className="app">
