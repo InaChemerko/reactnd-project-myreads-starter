@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Book extends Component {
 
   render() {
-console.log("fgt", this.props.book)
+//console.log("fgt", this.props.book)
 		return(                      
                         <div className="book">
                           <div className="book-top">

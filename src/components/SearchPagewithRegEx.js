@@ -1,7 +1,11 @@
+//using RegEx, not import
+
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book'
 import * as BooksAPI from '../BooksAPI'
+
+import escapeRegExp from 'escape-string-regexp';
 
 class SearchPage extends Component {
 
@@ -25,39 +29,22 @@ class SearchPage extends Component {
         }
   }
     
-	render(){
+  render(){
     //console.log(this.props.booksList)
 
-    //this.state.booksSearch.map((booksSearch) => {
-            //booksSearch.shelf = "none";
-            
-               //this.props.booksList.map((book) => {
+    let matchingBooks;
+    if (this.state.query) {
+      const match = new RegExp(escapeRegExp(this.state.query), 'i');
+      matchingBooks = this.state.booksSearch.filter((book) => match.test(book.title))
 
-                  //if (booksSearch.id === book.id) {
-                    //booksSearch.shelf = book.shelf
-                  //}
-                    
-                    //return booksSearch.shelf;
-                //}
-            //)})
+    } else {
+      matchingBooks = this.state.booksSearch
+    }
 
     
-this.state.booksSearch.map((booksSearch) => {
-            booksSearch.shelf = "none";
-            return (
-                this.props.booksList.map((book) => {
+    return(
 
-                  if (booksSearch.id === book.id) {
-                    booksSearch.shelf = book.shelf
-                  }
-                    
-                    return booksSearch.shelf;
-                }
-            ))})   
-
-		return(
-
-			<div className="search-books">
+      <div className="search-books">
             <div className="search-books-bar">
               <Link to='/' className="close-search">Close</Link>
               <div className="search-books-input-wrapper">
@@ -69,13 +56,26 @@ this.state.booksSearch.map((booksSearch) => {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-             { this.state.booksSearch.map((booksSearch) => 
-              (<li key={ booksSearch.id }>
+             { matchingBooks.map((matchingBook) => {
+              matchingBook.shelf ='none';
+              this.props.booksList.map(book => (
+                book.id === matchingBook.id ? 
+                matchingBook.shelf=book.shelf : ''))
+
+              return (
+                
+
+              <li key={ matchingBook.id }>
                              <Book 
-                                 book={ booksSearch }
+                                 book={ matchingBook }
                                  updateBooks={ this.props.updateBooks }
                              /> 
-                         </li>))} 
+                         </li>
+                         ) 
+
+
+             } )
+              } 
               </ol>
             </div>
           </div>
@@ -84,8 +84,8 @@ this.state.booksSearch.map((booksSearch) => {
 
 
 
-			)
-	}
+      )
+  }
 }
 
 
