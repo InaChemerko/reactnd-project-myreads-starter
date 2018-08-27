@@ -3,7 +3,7 @@ The **MyReads** is a project of the Grow with Google Front-End Nanodegree Progra
 
 ## Project Overview
 The project emphasizes using React to build the application and provides an API server and client library.
-These is a bookshelf app that allows to select and categorize books the user has read, are currently reading, or wants to read. 
+There is a bookshelf app that allows to select and categorize books the user has read, are currently reading, or wants to read. 
 The book has a control that lets the user selects the shelf for this book. 
 The user can find books on the search page and chooses the shelf for them. 
 
@@ -14,7 +14,7 @@ The user can find books on the search page and chooses the shelf for them.
 3. The user needs to start the development server with `npm start`
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). JS files were created for each component and were used import/require statements to include them where they are needed. 
-The user should remember that in this project the backend API uses a fixed set of cached search results and is limited to a particular set of search terms. For more detail information, please, click [SEARCH_TERMS.md](SEARCH_TERMS.md). The user can get any result for some searches.
+The user should remember that in this project the backend API uses a fixed set of cached search results and is limited to a particular set of search terms. For more detail information, please, click [SEARCH_TERMS.md](SEARCH_TERMS.md). The user can not get a result for some searches.
 
 
 
