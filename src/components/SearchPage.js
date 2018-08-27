@@ -20,7 +20,7 @@ class SearchPage extends Component {
                 } else {
                     this.setState({ booksSearch: booksSearch })
                 }
-            })
+            }) //.catch((err) => { this.setState({ booksSearch: [] })})
         } else { this.setState({ booksSearch: [] })
         }
   }
