@@ -8,8 +8,12 @@ class Book extends Component {
 		return(                      
                         <div className="book">
                           <div className="book-top">
+                          {this.props.book.imageLinks ? (
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}></div>
-                            <div className="book-shelf-changer">
+                            ) : (
+                            <div className="book-cover" style={{ width: 128, height: 193 }}><p>Sorry, the image is not available</p></div>
+                            ) }
+                              <div className="book-shelf-changer">
                               <select onChange={(event) => this.props.updateBooks(this.props.book, event.target.value)}
                                 value={this.props.book.shelf || "none"}>
                                 <option value="move" disabled>Move to...</option>
