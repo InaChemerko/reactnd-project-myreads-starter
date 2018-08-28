@@ -11,6 +11,7 @@ class SearchPage extends Component {
     
   }
 
+  // books search query
   updateQuery = (query) => {
     this.setState({ query })
    if (query) {
@@ -20,40 +21,24 @@ class SearchPage extends Component {
                 } else {
                     this.setState({ booksSearch: booksSearch })
                 }
-            }) //.catch((err) => { this.setState({ booksSearch: [] })})
+            })
         } else { this.setState({ booksSearch: [] })
         }
   }
     
 	render(){
     //console.log(this.props.booksList)
-
-    //this.state.booksSearch.map((booksSearch) => {
-            //booksSearch.shelf = "none";
-            
-               //this.props.booksList.map((book) => {
-
-                  //if (booksSearch.id === book.id) {
-                    //booksSearch.shelf = book.shelf
-                  //}
-                    
-                    //return booksSearch.shelf;
-                //}
-            //)})
-
-    
+//display on the shelf
 this.state.booksSearch.map((booksSearch) => {
             booksSearch.shelf = "none";
             return (
                 this.props.booksList.map((book) => {
-
                   if (booksSearch.id === book.id) {
                     booksSearch.shelf = book.shelf
                   }
-                    
                     return booksSearch.shelf;
                 }
-            ))})   
+            ))})
 
 		return(
 
@@ -70,20 +55,14 @@ this.state.booksSearch.map((booksSearch) => {
             <div className="search-books-results">
               <ol className="books-grid">
              { this.state.booksSearch.map((booksSearch) => 
-              (<li key={ booksSearch.id }>
+              (<li key={booksSearch.id}>
                              <Book 
-                                 book={ booksSearch }
-                                 updateBooks={ this.props.updateBooks }
-                             /> 
+                                 book={booksSearch}
+                                 updateBooks={this.props.updateBooks} /> 
                          </li>))} 
               </ol>
             </div>
           </div>
-
-
-
-
-
 			)
 	}
 }

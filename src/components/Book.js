@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Book extends Component {
 
   render() {
-//console.log("fgt", this.props.book)
+
 		return(                      
                         <div className="book">
                           <div className="book-top">
@@ -22,7 +22,7 @@ class Book extends Component {
                                 <option value="read">Read</option>
                                 <option value="none">None</option>
                               </select>
-                            </div>
+                              </div>
                           </div>
                           <div className="book-title">{this.props.book.title}</div>
                           <div className="book-authors">{this.props.book.authors}</div>
