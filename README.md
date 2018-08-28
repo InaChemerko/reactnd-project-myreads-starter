@@ -9,7 +9,7 @@ The user can find books on the search page and chooses the shelf for them.
 
 ## Instruction
 
-1. The user download or clone ZIP of repository on the local machine.
+1. The user downloads or clones ZIP of repository on the local machine.
 2. The user needs to install all project dependencies with `npm install`
 3. The user needs to start the development server with `npm start`
 
